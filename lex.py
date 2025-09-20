@@ -31,7 +31,7 @@ tokens = [
     'PARE', 'PARD', 'PONTOV', 'PONTO', 'VIRG', 'DOISP'
 ] + list(reserved.values())
 
-# Expressões Regulares para tokens simples (operadores e delimitadores)
+# Expressões Regulares para tokens simples
 t_MAIS      = r'\+'
 t_MENOS     = r'-'
 t_VEZES     = r'\*'
@@ -58,17 +58,22 @@ def t_COMMENT(t):
 # Regra garante que um identificador comece com uma letra
 def t_IDENTIFICADOR_INVALIDO(t):
     r'\d+[a-zA-Z][a-zA-Z_0-9]*'
-    print(f"Erro Léxico na Linha {t.lexer.lineno}: Identificador inválido '{t.value}' não pode começar com um número.")
+    print(f"!!!Erro Léxico na Linha {t.lexer.lineno}: Identificador inválido '{t.value}' não pode começar com um número.!!!")
     t.lexer.skip(len(t.value))
 
-# Regra garante que um identificador comece com uma letra
+# Regra reconhece um identificador
 def t_IDENTIFICADOR(t):
     r'[a-zA-Z][a-zA-Z_0-9]*'
-
     t.type = reserved.get(t.value, 'IDENTIFICADOR')
     return t
 
-# Regra reconhece um ou mais numeros.
+# Regra reconhece numero real.
+def t_NUMERO_FLOAT(t):
+    r'(\d+\.\d+|\.\d+|\d+\.)'
+    print(f"!!!Erro Léxico na Linha {t.lexer.lineno}: Número real '{t.value}' não é permitido.!!!")
+    t.lexer.skip(len(t.value))
+
+# Regra reconhece um ou mais numeros decimais.
 def t_NUMERO(t):
     r'\d+'
     t.value = int(t.value)
@@ -85,7 +90,6 @@ t_ignore = ' \t'
 # Tratamento de erros.
 def t_error(t):
     print(f"Caractere ilegal '{t.value[0]}' encontrado na linha {t.lexer.lineno}")
-    # Pula o caractere ilegal para continuar a análise.
     t.lexer.skip(1)
 
 lexer = lex.lex()
@@ -100,7 +104,7 @@ var
 
 begin
    read(numero);
-   resultado := 1;
+   resultado := 1.;
    while numero > 0 do
    begin {meu ammigo}
       resultado := {oce ta bao}resultado * numero;
@@ -146,7 +150,7 @@ begin
 end.
 """
     
-    lexer.input(test_code2)
+    lexer.input(test_code)
 
     print("--- Análise Léxica ---")
     while True:
