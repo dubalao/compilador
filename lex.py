@@ -34,7 +34,7 @@ tokens = [
     'PARE', 'PARD', 'PONTOV', 'PONTO', 'VIRG', 'DOISP'
 ] + list(reserved.values())
 
-# Expressões Regulares para tokens simples (operadores e delimitadores)
+# Expressões Regulares para tokens simples
 t_MAIS      = r'\+'
 t_MENOS     = r'-'
 t_VEZES     = r'\*'
@@ -61,7 +61,7 @@ def t_COMMENT(t):
 # Regra garante que um identificador comece com uma letra
 def t_IDENTIFICADOR_INVALIDO(t):
     r'\d+[a-zA-Z][a-zA-Z_0-9]*'
-    print(f"Erro Léxico na Linha {t.lexer.lineno}: Identificador inválido '{t.value}' não pode começar com um número.")
+    print(f"!!!Erro Léxico na Linha {t.lexer.lineno}: Identificador inválido '{t.value}' não pode começar com um número.!!!")
     t.lexer.skip(len(t.value))
 
 # Regra que reconhece identificador e palavras reservadas.
@@ -70,7 +70,13 @@ def t_IDENTIFICADOR(t):
     t.type = reserved.get(t.value, 'IDENTIFICADOR')
     return t
 
-# Regra reconhece um ou mais numeros.
+# Regra reconhece numero real.
+def t_NUMERO_FLOAT(t):
+    r'(\d+\.\d+|\.\d+|\d+\.)'
+    print(f"!!!Erro Léxico na Linha {t.lexer.lineno}: Número real '{t.value}' não é permitido.!!!")
+    t.lexer.skip(len(t.value))
+
+# Regra reconhece um ou mais numeros decimais.
 def t_NUMERO(t):
     r'\d+'
     t.value = int(t.value)
