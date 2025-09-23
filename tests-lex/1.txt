@@ -1,0 +1,11 @@
+program TesteCondicional;
+(* Testar a declaração de variáveis e a estrutura 'if-then'. *)
+var
+    my_variable : integer;
+
+begin
+    my_variable := 10;
+    if my_variable > 5 then
+        my_variable := my_variable + 1
+    write(my_variable)
+end.

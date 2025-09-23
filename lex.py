@@ -1,4 +1,5 @@
 import ply.lex as lex
+import sys
 
 # Dicionário de palavras reservadas.
 reserved = {
@@ -20,7 +21,9 @@ reserved = {
     'and': 'AND',
     'not': 'NOT',
     'true': 'TRUE',
-    'false': 'FALSE'
+    'false': 'FALSE',
+    'integer': 'TIPO_INTEIRO',
+    'boolean': 'TIPO_BOLEANO',
 }
 
 tokens = [
@@ -61,10 +64,9 @@ def t_IDENTIFICADOR_INVALIDO(t):
     print(f"Erro Léxico na Linha {t.lexer.lineno}: Identificador inválido '{t.value}' não pode começar com um número.")
     t.lexer.skip(len(t.value))
 
-# Regra garante que um identificador comece com uma letra
+# Regra que reconhece identificador e palavras reservadas.
 def t_IDENTIFICADOR(t):
     r'[a-zA-Z][a-zA-Z_0-9]*'
-
     t.type = reserved.get(t.value, 'IDENTIFICADOR')
     return t
 
@@ -84,74 +86,35 @@ t_ignore = ' \t'
 
 # Tratamento de erros.
 def t_error(t):
-    print(f"Caractere ilegal '{t.value[0]}' encontrado na linha {t.lexer.lineno}")
-    # Pula o caractere ilegal para continuar a análise.
+    print(f"\nCaractere inválido '{t.value[0]}' encontrado na linha {t.lexer.lineno}\n")
+    # Pula o caractere invalido para continuar a análise.
     t.lexer.skip(1)
 
 lexer = lex.lex()
 
 if __name__ == '__main__':
-    test_code = """
-program Fatorial;
-var
-   numero, resultado, integer: integer;
-   finalizado : boolean;
-   1arvore : integer;
-
-begin
-   read(numero);
-   resultado := 1;
-   while numero > 0 do
-   begin {meu ammigo}
-      resultado := {oce ta bao}resultado * numero;
-      numero := numero {*tao ta bao*}- 1
-   end;
-   write(resultado, 2<>3, true)
-end.
-"""
-    test_code2 = """
-    program testeCompleto;
-
-var
-    a, b, resultado: integer;
-    flag: boolean;
-
-procedure meuProcedimento(x: integer; y: boolean);
-begin
-    write(x, y);
-end;
-
-function minhaFuncao(x: integer): integer;
-begin
-    x := x + 1;
-    minhaFuncao := x;
-end;
-
-begin
-    read(a, b);
-    flag := true;
-
-    if a < b then
-        resultado := a * 2 + b div 3;
-    else
-        resultado := a - b;
-
-    while resultado > 0 do
-        resultado := resultado - 1;
-
-    write(resultado, flag, a <> b, a <= b, a >= b, a = b, not flag, -a);
-
-    meuProcedimento(a, false);
-    resultado := minhaFuncao(a)
-end.
-"""
     
-    lexer.input(test_code2)
+    if len(sys.argv) < 2:
+        print("Uso: python ply.py caminho_entrada.txt")
+        sys.exit(1)
+
+    arquivo = sys.argv[1]
+
+    try:
+        with open(arquivo, "r", encoding="utf-8") as f:
+            test_code = f.read()
+    except FileNotFoundError:
+        print(f"Arquivo '{arquivo}' não encontrado.")
+        exit(1)
+
+    lexer.input(test_code)
 
     print("--- Análise Léxica ---")
     while True:
         tok = lexer.token()
         if not tok:
-            break  # Fim dos tokens
-        print(f"({tok.type}, {tok.value} )")
+            break
+        print(f"({tok.type}, {tok.value})")
     print("--- Fim da Análise ---")
+
+#Para testar python .\lex.py .\tests-lex\N.txt  -> N = numero do teste

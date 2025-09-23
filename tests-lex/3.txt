@@ -1,0 +1,14 @@
+program TesteOperadores;
+(* Objetivo: Testar operadores aritméticos e relacionais. *)
+var
+    a, b, result : integer;
+
+begin
+    a := 5;
+    b := 10;
+
+    result := a + b * (a - b) div 2;
+
+    if result <> 0 then
+        write(result)
+end.

@@ -1,0 +1,24 @@
+program TesteComentariosELogica;
+(* Objetivo: Testar comentários em diferentes formatos e a estrutura 'if-then-else'. *)
+var
+    x, y : integer;
+
+begin
+    x := 42; { Este é um comentário na mesma linha }
+    y := 3;
+
+    (* Este é um comentário de múltiplas linhas
+    que deve ser ignorado.
+    *)
+
+    if x > y then
+        begin
+        x := x - 1
+        end
+    else
+        begin
+        y := y + 1
+        end;
+
+    write(x, y)
+end.
