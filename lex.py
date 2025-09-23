@@ -107,7 +107,7 @@ if __name__ == '__main__':
     arquivo = sys.argv[1]
 
     try:
-        with open(arquivo, "r", encoding="utf-8") as f:
+        with open(arquivo, "r") as f:
             test_code = f.read()
     except FileNotFoundError:
         print(f"Arquivo '{arquivo}' não encontrado.")
