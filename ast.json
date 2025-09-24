@@ -1,0 +1,91 @@
+{
+  "tipo": "programa",
+  "nome": "TesteCondicional",
+  "corpo": {
+    "tipo": "bloco",
+    "vars": [
+      {
+        "tipo": "decl_var",
+        "id": {
+          "tipo": "id",
+          "nome": "my_variable"
+        },
+        "tipo_var": "integer"
+      }
+    ],
+    "subrotinas": [],
+    "comandos": {
+      "tipo": "seq_comandos",
+      "primeiro": {
+        "tipo": "cmd_atrib",
+        "id": {
+          "tipo": "id",
+          "nome": "my_variable"
+        },
+        "exp": {
+          "tipo": "exp_num",
+          "valor": 10
+        }
+      },
+      "resto": {
+        "tipo": "seq_comandos",
+        "primeiro": {
+          "tipo": "cmd_condicional",
+          "condicao": {
+            "tipo": "exp_binaria",
+            "op": ">",
+            "esq": {
+              "tipo": "exp_var",
+              "id": {
+                "tipo": "id",
+                "nome": "my_variable"
+              }
+            },
+            "dir": {
+              "tipo": "exp_num",
+              "valor": 5
+            }
+          },
+          "corpo": {
+            "tipo": "cmd_atrib",
+            "id": {
+              "tipo": "id",
+              "nome": "my_variable"
+            },
+            "exp": {
+              "tipo": "exp_binaria",
+              "op": "+",
+              "esq": {
+                "tipo": "exp_var",
+                "id": {
+                  "tipo": "id",
+                  "nome": "my_variable"
+                }
+              },
+              "dir": {
+                "tipo": "exp_num",
+                "valor": 1
+              }
+            }
+          }
+        },
+        "resto": {
+          "tipo": "seq_comandos",
+          "primeiro": {
+            "tipo": "cmd_escrita",
+            "expressoes": [
+              {
+                "tipo": "exp_var",
+                "id": {
+                  "tipo": "id",
+                  "nome": "my_variable"
+                }
+              }
+            ]
+          },
+          "resto": null
+        }
+      }
+    }
+  }
+}

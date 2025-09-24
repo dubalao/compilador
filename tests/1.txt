@@ -6,6 +6,6 @@ var
 begin
     my_variable := 10;
     if my_variable > 5 then
-        my_variable := my_variable + 1
+        my_variable := my_variable + 1;
     write(my_variable)
 end.
