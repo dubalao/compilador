@@ -11,9 +11,7 @@ Rascal é uma linguagem imperativa e estruturada, projetada para fins educaciona
 -   **Sintaxe Pascal-like:** Utiliza palavras-chave como `program`, `var`, `begin`, `end`, `if-then-else` e `while-do`.
     
 -   **Operadores:** Inclui operadores aritméticos (`+`, `-`, `*`, `div`), lógicos (`and`, `or`, `not`) e relacionais (`=`, `<>`, `<`, `>`, `<=`, `>=`).
-    
--   **Estrutura Rígida:** Um programa é sempre definido por um bloco principal, com seções opcionais para declaração de variáveis e sub-rotinas (procedimentos e funções).
-    
+        
 -   **Comentários:** Suporta comentários no estilo Pascal, delimitados por `{ ... }` ou `(* ... *)`.
     
 
@@ -23,7 +21,7 @@ O compilador está organizado nos seguintes arquivos principais:
 
 ### 1. `lex.py` (Analisador Léxico)
 
-Este módulo é responsável pela primeira fase da compilação, a **Análise Léxica**.  Ele lê o código-fonte Rascal como uma sequência de caracteres e o converte em uma sequência de "tokens" (unidades léxicas).
+Este arquivo é responsável pela primeira fase da compilação, a **Análise Léxica**.  Ele lê o código-fonte Rascal como uma sequência de caracteres e o converte em uma sequência de "tokens".
 
 -   **Funcionalidade:** Utiliza expressões regulares para identificar palavras-chave (`program`, `if`, etc.), identificadores, números, operadores e símbolos de pontuação.
     
@@ -33,7 +31,7 @@ Este módulo é responsável pela primeira fase da compilação, a **Análise L�
 
 ### 2. `yacc.py` (Analisador Sintático)
 
-Este é o coração do projeto, responsável pela **Análise Sintática** (ou _parsing_). Ele recebe a lista de tokens do analisador léxico e verifica se eles formam uma sequência válida de acordo com a gramática formal da linguagem Rascal.
+Este arquivo é responsável pela **Análise Sintática** (ou _parsing_). Ele recebe a lista de tokens do analisador léxico e verifica se eles formam uma sequência válida de acordo com a gramática formal da linguagem Rascal.
 
 -   **Funcionalidade:** Implementa a gramática da linguagem, definindo a estrutura de programas, declarações, comandos e expressões.
     
@@ -41,53 +39,8 @@ Este é o coração do projeto, responsável pela **Análise Sintática** (ou _p
     
 -   **Tratamento de Erros:** Reporta erros de sintaxe, como a falta de um ponto e vírgula, um `end` ausente ou uma expressão malformada.
     
-
-### 3. `ver-ast.py` (Visualizador da AST)
-
-Para facilitar a depuração e o entendimento da estrutura gerada pelo parser, este script lê o arquivo `ast.json` e gera uma representação gráfica da árvore.
-
-Utiliza a biblioteca `graphviz` para desenhar a árvore de forma automática e legível.
-    
--   **Saída:** Gera um arquivo de imagem (`ast_visualizada.png`) com nós e arestas que representam a estrutura do programa analisado.
-    
-
-## Como Executar
-
 ### Pré-requisitos
 
 1.  **Python 3.x**
     
-2.  **Biblioteca PLY:**  `pip install ply`
-    
-3.  **Graphviz:**
-    
-    -   **Instale a biblioteca Python:**  `pip install graphviz`
-        
-    -   **Instale o software Graphviz:** É necessário ter o Graphviz instalado no seu sistema operacional. [Visite o site oficial para downloads e instruções](https://graphviz.org/download/ "null").
-        
-
-### Passos para Execução
-
-O processo ocorre em duas etapas:
-
-**1. Gerar a AST a partir de um arquivo txt ue contêm código-fonte Rascal:**
-
-Execute o analisador sintático, passando o caminho para o seu arquivo de código-fonte `.txt` como argumento.
-
-```
-python yacc.py /caminho/para/seu/teste.txt
-
-```
-
-Se a análise for bem-sucedida, uma mensagem de sucesso será exibida e o arquivo `ast.json` será criado no diretório.
-
-**2. Visualizar a AST gerada:**
-
-Execute o script de visualização, que irá ler o `ast.json` e gerar a imagem.
-
-```
-python ver-ast.py ast.json
-
-```
-
-Após a execução, um arquivo de imagem chamado `ast_visualizada.png` será salvo na mesma pasta, contendo a representação gráfica da árvore gerada.
+2.  **Biblioteca PLY:**  `pip install ply` 
