@@ -1,3 +1,9 @@
+# Analisador Léxico
+# Alunos - Eduardo Andrade
+#        - Joao Vitor Pereira
+#        - Rodrigo Kenji
+
+# Para testar utilize -> python .\lex.py .\tests-lex\N.txt  -> N = numero do teste
 import ply.lex as lex
 import sys
 
@@ -122,5 +128,3 @@ if __name__ == '__main__':
             break
         print(f"({tok.type}, {tok.value})")
     print("--- Fim da Análise ---")
-
-#Para testar python .\lex.py .\tests-lex\N.txt  -> N = numero do teste
