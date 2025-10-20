@@ -1,0 +1,4 @@
+program Test8;
+begin
+    write(12)
+end.

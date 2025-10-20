@@ -12,13 +12,9 @@ begin
     *)
 
     if x > y then
-        begin
         x := x - 1
-        end
     else
-        begin
-        y := y + 1
-        end;
+        y := y + 1;
 
     write(x, y)
 end.

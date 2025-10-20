@@ -301,7 +301,7 @@ parser = yacc.yacc(debug=True)
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
-        print("Uso: python yacc.py caminho_do_arquivo.txt")
+        print("Como usar: python yacc.py caminho_do_arq_test.txt")
         sys.exit(1)
 
     arquivo_teste = sys.argv[1]
