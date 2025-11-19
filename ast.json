@@ -1,6 +1,6 @@
 {
   "tipo": "programa",
-  "nome": "TesteCondicional",
+  "nome": "TesteFuncoes",
   "corpo": {
     "tipo": "bloco",
     "vars": [
@@ -8,19 +8,254 @@
         "tipo": "decl_var",
         "id": {
           "tipo": "id",
-          "nome": "my_variable"
+          "nome": "x"
         },
         "tipo_var": "integer"
+      },
+      {
+        "tipo": "decl_var",
+        "id": {
+          "tipo": "id",
+          "nome": "y"
+        },
+        "tipo_var": "integer"
+      },
+      {
+        "tipo": "decl_var",
+        "id": {
+          "tipo": "id",
+          "nome": "z"
+        },
+        "tipo_var": "integer"
+      },
+      {
+        "tipo": "decl_var",
+        "id": {
+          "tipo": "id",
+          "nome": "ok"
+        },
+        "tipo_var": "boolean"
       }
     ],
-    "subrotinas": [],
+    "subrotinas": [
+      {
+        "tipo": "decl_func",
+        "nome": "soma",
+        "params": [
+          {
+            "tipo": "decl_param",
+            "id": {
+              "tipo": "id",
+              "nome": "a"
+            },
+            "tipo_var": "integer"
+          },
+          {
+            "tipo": "decl_param",
+            "id": {
+              "tipo": "id",
+              "nome": "b"
+            },
+            "tipo_var": "integer"
+          }
+        ],
+        "retorno": "integer",
+        "corpo": {
+          "tipo": "bloco",
+          "vars": [
+            {
+              "tipo": "decl_var",
+              "id": {
+                "tipo": "id",
+                "nome": "res"
+              },
+              "tipo_var": "integer"
+            }
+          ],
+          "subrotinas": [],
+          "comandos": {
+            "tipo": "seq_comandos",
+            "primeiro": {
+              "tipo": "cmd_atrib",
+              "id": {
+                "tipo": "id",
+                "nome": "res"
+              },
+              "exp": {
+                "tipo": "exp_binaria",
+                "op": "+",
+                "esq": {
+                  "tipo": "exp_var",
+                  "id": {
+                    "tipo": "id",
+                    "nome": "a"
+                  }
+                },
+                "dir": {
+                  "tipo": "exp_var",
+                  "id": {
+                    "tipo": "id",
+                    "nome": "b"
+                  }
+                }
+              }
+            },
+            "resto": {
+              "tipo": "seq_comandos",
+              "primeiro": {
+                "tipo": "cmd_atrib",
+                "id": {
+                  "tipo": "id",
+                  "nome": "soma"
+                },
+                "exp": {
+                  "tipo": "exp_var",
+                  "id": {
+                    "tipo": "id",
+                    "nome": "res"
+                  }
+                }
+              },
+              "resto": null
+            }
+          }
+        }
+      },
+      {
+        "tipo": "decl_func",
+        "nome": "dobro",
+        "params": [
+          {
+            "tipo": "decl_param",
+            "id": {
+              "tipo": "id",
+              "nome": "n"
+            },
+            "tipo_var": "integer"
+          }
+        ],
+        "retorno": "integer",
+        "corpo": {
+          "tipo": "bloco",
+          "vars": [],
+          "subrotinas": [],
+          "comandos": {
+            "tipo": "seq_comandos",
+            "primeiro": {
+              "tipo": "cmd_atrib",
+              "id": {
+                "tipo": "id",
+                "nome": "dobro"
+              },
+              "exp": {
+                "tipo": "exp_binaria",
+                "op": "*",
+                "esq": {
+                  "tipo": "exp_var",
+                  "id": {
+                    "tipo": "id",
+                    "nome": "n"
+                  }
+                },
+                "dir": {
+                  "tipo": "exp_num",
+                  "valor": 2
+                }
+              }
+            },
+            "resto": null
+          }
+        }
+      },
+      {
+        "tipo": "decl_func",
+        "nome": "maior",
+        "params": [
+          {
+            "tipo": "decl_param",
+            "id": {
+              "tipo": "id",
+              "nome": "a"
+            },
+            "tipo_var": "integer"
+          },
+          {
+            "tipo": "decl_param",
+            "id": {
+              "tipo": "id",
+              "nome": "b"
+            },
+            "tipo_var": "integer"
+          }
+        ],
+        "retorno": "integer",
+        "corpo": {
+          "tipo": "bloco",
+          "vars": [],
+          "subrotinas": [],
+          "comandos": {
+            "tipo": "seq_comandos",
+            "primeiro": {
+              "tipo": "cmd_condicional",
+              "condicao": {
+                "tipo": "exp_binaria",
+                "op": ">",
+                "esq": {
+                  "tipo": "exp_var",
+                  "id": {
+                    "tipo": "id",
+                    "nome": "a"
+                  }
+                },
+                "dir": {
+                  "tipo": "exp_var",
+                  "id": {
+                    "tipo": "id",
+                    "nome": "b"
+                  }
+                }
+              },
+              "corpo": {
+                "tipo": "cmd_atrib",
+                "id": {
+                  "tipo": "id",
+                  "nome": "maior"
+                },
+                "exp": {
+                  "tipo": "exp_var",
+                  "id": {
+                    "tipo": "id",
+                    "nome": "a"
+                  }
+                }
+              },
+              "senao": {
+                "tipo": "cmd_atrib",
+                "id": {
+                  "tipo": "id",
+                  "nome": "maior"
+                },
+                "exp": {
+                  "tipo": "exp_var",
+                  "id": {
+                    "tipo": "id",
+                    "nome": "b"
+                  }
+                }
+              }
+            },
+            "resto": null
+          }
+        }
+      }
+    ],
     "comandos": {
       "tipo": "seq_comandos",
       "primeiro": {
         "tipo": "cmd_atrib",
         "id": {
           "tipo": "id",
-          "nome": "my_variable"
+          "nome": "x"
         },
         "exp": {
           "tipo": "exp_num",
@@ -30,60 +265,144 @@
       "resto": {
         "tipo": "seq_comandos",
         "primeiro": {
-          "tipo": "cmd_condicional",
-          "condicao": {
-            "tipo": "exp_binaria",
-            "op": ">",
-            "esq": {
-              "tipo": "exp_var",
-              "id": {
-                "tipo": "id",
-                "nome": "my_variable"
-              }
-            },
-            "dir": {
-              "tipo": "exp_num",
-              "valor": 5
-            }
+          "tipo": "cmd_atrib",
+          "id": {
+            "tipo": "id",
+            "nome": "y"
           },
-          "corpo": {
-            "tipo": "cmd_atrib",
-            "id": {
-              "tipo": "id",
-              "nome": "my_variable"
-            },
-            "exp": {
-              "tipo": "exp_binaria",
-              "op": "+",
-              "esq": {
-                "tipo": "exp_var",
-                "id": {
-                  "tipo": "id",
-                  "nome": "my_variable"
-                }
-              },
-              "dir": {
-                "tipo": "exp_num",
-                "valor": 1
-              }
-            }
+          "exp": {
+            "tipo": "exp_num",
+            "valor": 20
           }
         },
         "resto": {
           "tipo": "seq_comandos",
           "primeiro": {
-            "tipo": "cmd_escrita",
-            "expressoes": [
-              {
-                "tipo": "exp_var",
-                "id": {
-                  "tipo": "id",
-                  "nome": "my_variable"
+            "tipo": "cmd_atrib",
+            "id": {
+              "tipo": "id",
+              "nome": "z"
+            },
+            "exp": {
+              "tipo": "chamada_func",
+              "nome": "soma",
+              "args": [
+                {
+                  "tipo": "exp_var",
+                  "id": {
+                    "tipo": "id",
+                    "nome": "x"
+                  }
+                },
+                {
+                  "tipo": "chamada_func",
+                  "nome": "dobro",
+                  "args": [
+                    {
+                      "tipo": "exp_var",
+                      "id": {
+                        "tipo": "id",
+                        "nome": "y"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "resto": {
+            "tipo": "seq_comandos",
+            "primeiro": {
+              "tipo": "cmd_atrib",
+              "id": {
+                "tipo": "id",
+                "nome": "ok"
+              },
+              "exp": {
+                "tipo": "exp_binaria",
+                "op": ">",
+                "esq": {
+                  "tipo": "chamada_func",
+                  "nome": "maior",
+                  "args": [
+                    {
+                      "tipo": "exp_var",
+                      "id": {
+                        "tipo": "id",
+                        "nome": "z"
+                      }
+                    },
+                    {
+                      "tipo": "exp_var",
+                      "id": {
+                        "tipo": "id",
+                        "nome": "x"
+                      }
+                    }
+                  ]
+                },
+                "dir": {
+                  "tipo": "exp_var",
+                  "id": {
+                    "tipo": "id",
+                    "nome": "y"
+                  }
                 }
               }
-            ]
-          },
-          "resto": null
+            },
+            "resto": {
+              "tipo": "seq_comandos",
+              "primeiro": {
+                "tipo": "cmd_condicional",
+                "condicao": {
+                  "tipo": "exp_var",
+                  "id": {
+                    "tipo": "id",
+                    "nome": "ok"
+                  }
+                },
+                "corpo": {
+                  "tipo": "cmd_escrita",
+                  "expressoes": [
+                    {
+                      "tipo": "exp_var",
+                      "id": {
+                        "tipo": "id",
+                        "nome": "z"
+                      }
+                    }
+                  ]
+                },
+                "senao": {
+                  "tipo": "cmd_escrita",
+                  "expressoes": [
+                    {
+                      "tipo": "exp_var",
+                      "id": {
+                        "tipo": "id",
+                        "nome": "x"
+                      }
+                    },
+                    {
+                      "tipo": "exp_var",
+                      "id": {
+                        "tipo": "id",
+                        "nome": "y"
+                      }
+                    },
+                    {
+                      "tipo": "exp_var",
+                      "id": {
+                        "tipo": "id",
+                        "nome": "z"
+                      }
+                    }
+                  ]
+                }
+              },
+              "resto": null
+            }
+          }
         }
       }
     }

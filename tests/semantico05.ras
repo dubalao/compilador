@@ -1,0 +1,12 @@
+program erro_uso_procedure;
+var
+    x, y : integer;
+procedure calcular(val : integer);
+begin
+    write(val)
+end;
+begin
+    x := 10;
+    y := x + calcular(x);
+    write(y)
+end.
