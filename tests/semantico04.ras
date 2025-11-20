@@ -1,0 +1,10 @@
+program erro_redeclaracao;
+var
+    x : integer;
+    y : boolean;
+    x : boolean;
+begin
+    x := 10;
+    y := true;
+    write(x)
+end.

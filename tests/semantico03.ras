@@ -1,0 +1,12 @@
+program erro_condicional_tipo;
+var
+    a, b, soma : integer;
+begin
+    a := 5;
+    b := 10;
+    soma := a + b;
+    if soma then
+    begin
+        write(soma)
+    end
+end.

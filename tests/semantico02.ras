@@ -1,0 +1,9 @@
+program erro_atribuicao_tipo;
+var
+    idade : integer;
+    ativo : boolean;
+begin
+    idade := 25;
+    ativo := true;
+    idade := ativo;
+end.
