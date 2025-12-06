@@ -1,0 +1,11 @@
+program erro_leitura_escopo;
+procedure esconderijo(a : integer);
+var
+    segredo : integer;
+begin
+    segredo := 10
+end;
+
+begin
+    write(segredo)
+end.
