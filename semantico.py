@@ -4,7 +4,6 @@ import json
 class TabelaSimbolos:
     def __init__(self):
         self.escopos = []
-        # Inicializa com tipos primitivos se necessário, ou apenas escopo global
         self.entrar_escopo() 
         # Instala tipos primitivos
         self.definir('integer', 'tipo', None)
@@ -43,13 +42,14 @@ class AnalisadorSemantico:
     def visitar(self, no):
         if not no: return
         
-        # Se for uma lista de nós, visita cada um
+        # Visita cada nó da lista
         if isinstance(no, list):
             for n in no:
                 self.visitar(n)
             return
 
-        if not isinstance(no, dict): return
+        if not isinstance(no, dict): 
+            return
         
         metodo_nome = f"visitar_{no['tipo']}"
         visitante = getattr(self, metodo_nome, self.visitar_generico)
@@ -79,7 +79,6 @@ class AnalisadorSemantico:
 
     # --- DECLARAÇÕES ---
     def visitar_decl_vars(self, lista_decls):
-        # A estrutura da sua AST para vars é uma lista de dicionários
         for decl in lista_decls:
             nome = decl['id']['nome']
             tipo = decl['tipo_var']
@@ -121,8 +120,6 @@ class AnalisadorSemantico:
 
         self.tabela.entrar_escopo()
         
-        # Permitir atribuição ao nome da função (definir como variável local temporária ou tratar no cmd_atrib)
-        # Uma estratégia é definir um símbolo especial ou permitir que 'atribuição' olhe para o escopo pai se for o nome da função
         self.funcao_atual = {'nome': nome, 'tipo': tipo_retorno}
         
         for p in params:
@@ -241,7 +238,7 @@ class AnalisadorSemantico:
                 self.erro(f"Operador relacional '{op}' requer operandos inteiros.")
                 return 'boolean'
 
-        # Igualdade 
+        # (des)Igualdade
         if op in ['=', '<>']:
             if esq == dir:
                 return 'boolean'
@@ -268,11 +265,11 @@ class AnalisadorSemantico:
         info = self.tabela.buscar(nome)
         if not info:
             self.erro(f"Variável '{nome}' não declarada.")
-            return 'integer' # Tipo dummy
+            return 'integer' # dummy
         return info['tipo']
 
     def visitar_chamada_func(self, no):
-        # Análise análoga à chamada de procedimento
+        # Análise análoga a chamada de procedimento
         nome = no['nome']
         args = no['args']
         info = self.tabela.buscar(nome)
@@ -311,10 +308,9 @@ class AnalisadorSemantico:
             if tipo != 'integer': self.erro("'-' unário requer integer.")
             return 'integer'
 
-# --- EXECUÇÃO ---
+# Main
 if __name__ == '__main__':
     try:
-        # Carrega AST gerada pelo yacc.py
         with open("ast.json", "r") as f:
             ast = json.load(f)
         
