@@ -269,7 +269,6 @@ class AnalisadorSemantico:
         return info['tipo']
 
     def visitar_chamada_func(self, no):
-        # Análise análoga a chamada de procedimento
         nome = no['nome']
         args = no['args']
         info = self.tabela.buscar(nome)
