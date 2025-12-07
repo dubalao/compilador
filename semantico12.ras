@@ -1,5 +1,0 @@
-program teste_op_igual;
-begin
-    if 10 = true then
-        write(0)
-end.

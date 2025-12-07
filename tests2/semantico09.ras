@@ -1,0 +1,12 @@
+program erro_ret_func;
+var
+    a : boolean;
+
+function teste(tst : boolean): integer;
+begin
+    tst := true
+end;
+begin
+    a := true;
+    write(teste(a))
+end.

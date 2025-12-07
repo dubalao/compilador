@@ -1,5 +1,0 @@
-program teste_op_rel;
-begin
-    if true > false then 
-        write(1)
-end.

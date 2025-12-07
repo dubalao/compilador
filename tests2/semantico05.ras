@@ -1,0 +1,4 @@
+program erro_proc_inex;
+begin
+    imprimir(10) 
+end.

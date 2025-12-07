@@ -1,8 +1,0 @@
-program erro_qtd_args;
-procedure soma(a: integer; b: integer);
-begin
-    write(a + b)
-end;
-begin
-    soma(10)
-end.

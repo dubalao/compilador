@@ -1,7 +1,0 @@
-program erro_condicional_while;
-var 
-    i : integer;
-begin
-    while 1 + 1 do
-        i := 1
-end.

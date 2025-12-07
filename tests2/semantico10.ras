@@ -1,0 +1,4 @@
+program erro_op_arit;
+begin
+    write(10 + true) 
+end.

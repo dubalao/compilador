@@ -1,0 +1,8 @@
+program erro_tipo_args;
+procedure dobro(a: integer);
+begin
+    write(a * 2)
+end;
+begin
+    dobro(true)
+end.
